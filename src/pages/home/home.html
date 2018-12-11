@@ -5,13 +5,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
+  <h2>Bienvenue sur l'application </h2>
   <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
+    <span>Veuillez rentrer vos identifiant</span>
   </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <form method="POST" action="home/intervention.html">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="username" placeholder="password">
+    <input type="button" ion-button (click)="onGoToIntervention()" name="connexion" value="connexion" />
+  </form>
 </ion-content>
