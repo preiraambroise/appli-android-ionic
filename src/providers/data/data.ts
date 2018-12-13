@@ -23,6 +23,7 @@ export class DataProvider {
     var headers = new HttpHeaders({
         'Content-Type':  'application/json'
       });
+    console.log(loginstring);
     return this.http.post(this.url, loginstring, { headers: headers, observe: "response"});
   }
 }
