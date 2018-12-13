@@ -1,0 +1,10 @@
+<ion-list radio-group>
+  <ion-list-header>
+    Planning
+  </ion-list-header>
+
+  <ion-item *ngFor="let data of datas">
+    <ion-label>{{ data.nom }}</ion-label>
+    <ion-radio>{{ data.nom }}</ion-radio>
+  </ion-item>
+</ion-list>

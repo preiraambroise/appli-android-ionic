@@ -1,0 +1,18 @@
+<div>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Jeton d'Intervention</ion-label>
+      <ion-input [(ngModel)]="jeton" type="text" value=""></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Commentaire</ion-label>
+      <ion-input [(ngModel)]="commentaire" type="textarea"></ion-input>
+    </ion-item>
+    <listresultat></listresultat>
+    <listplanning></listplanning>
+    <div padding>
+      <button ion-button (click)="EnvoyerIntervention()">Envoyer</button>
+    </div>
+  </ion-list>
+</div>

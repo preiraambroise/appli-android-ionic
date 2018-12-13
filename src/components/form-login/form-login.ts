@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { InterventionPage } from '../../pages/intervention/intervention';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
+
 /**
  * Generated class for the FormLoginComponent component.
  *
@@ -37,6 +38,7 @@ export class FormLoginComponent {
       this.dataProvider.login(credentials)
         .subscribe((res) => {
             console.log('status code: ' + res.status);
+            console.log(res);
             status = res.status;
         }, (err) => {
             console.log('status code: ' + err.status);
@@ -67,5 +69,7 @@ export class FormLoginComponent {
       buttons: ['Fermer']
     });
     alert.present();
+    this.username = "";
+    this.password = "";
   }
 }

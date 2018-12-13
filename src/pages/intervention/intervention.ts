@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
+import { FormInterventionPage } from '../form-intervention/form-intervention';
 
 @Component({
     selector: 'page-intervention',
@@ -8,8 +9,12 @@ import { NavController } from 'ionic-angular';
 
 export class InterventionPage {
 
-    constructor(public navCtrl: NavController) {
+    constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
 
     }
 
+    PresentInterventionForm(){
+        let profileModal = this.modalCtrl.create(FormInterventionPage);
+        profileModal.present();
+    }
 }

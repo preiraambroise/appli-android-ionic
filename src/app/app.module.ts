@@ -9,8 +9,12 @@ import  { InterventionPage } from '../pages/intervention/intervention';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FormLoginComponent } from '../components/form-login/form-login';
+import { FormInterventionComponent } from '../components/form-intervention/form-intervention';
 import { DataProvider } from '../providers/data/data';
 import { HttpClientModule } from '@angular/common/http';
+import { FormInterventionPage } from '../pages/form-intervention/form-intervention';
+import { ListresultatComponent } from '../components/listresultat/listresultat';
+import { ListplanningComponent } from '../components/listplanning/listplanning';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { HttpClientModule } from '@angular/common/http';
     TabsPage,
     InterventionPage,
     FormLoginComponent,
-    InterventionPage
+    InterventionPage,
+    FormInterventionPage,
+    FormInterventionComponent,
+    ListresultatComponent,
+    ListplanningComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,11 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     TabsPage,
-    InterventionPage
+    InterventionPage,
+    FormInterventionComponent,
+    ListresultatComponent,
+    FormInterventionPage,
+    ListplanningComponent
   ],
   providers: [
     StatusBar,
