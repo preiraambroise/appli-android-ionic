@@ -1,6 +1,6 @@
 <ion-list>
   <ion-item>
-     <ion-label floating>Jeton d'Intervention</ion-label>
+     <ion-label floating>Jeton d'Intervention*</ion-label>
      <ion-input [(ngModel)]="jeton" type="text" value=""></ion-input>
   </ion-item>
   <ion-item>
@@ -9,7 +9,7 @@
   </ion-item>
       <ion-list radio-group [(ngModel)]="Planningid">
         <ion-list-header>
-          Planning
+          Planning*
         </ion-list-header>
       
         <ion-item *ngFor="let planning of plannings">
@@ -19,7 +19,7 @@
       </ion-list>
       <ion-list radio-group [(ngModel)]="Resultatid">
         <ion-list-header>
-          Resultat
+          Resultat*
         </ion-list-header>
         <ion-item *ngFor="let resultat of resultats">
           <ion-label>{{ resultat.nom }}</ion-label>

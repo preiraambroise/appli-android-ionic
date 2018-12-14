@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController } from 'ionic-angular';
+import { ViewController, NavController, AlertController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { InterventionPage } from '../../pages/intervention/intervention';
 
@@ -19,12 +19,12 @@ export class FormInterventionComponent {
   jeton;
   Resultatid;
   Planningid;
-  dataProvider;
   plannings;
   resultats;
-  status;
+
+  dataProvider: DataProvider;
   nav: NavController;
-  constructor(public viewCtrl: ViewController, dataProvider: DataProvider, nav : NavController) {
+  constructor(public viewCtrl: ViewController, dataProvider: DataProvider, nav : NavController, private alertCtrl: AlertController) {
       this.dataProvider = dataProvider;
       this.Getplannings();
       this.Getresulats();
@@ -51,13 +51,15 @@ export class FormInterventionComponent {
     console.log(intervention);
     this.dataProvider.EnvoyerIntervention(intervention)
         .subscribe((res) => {
-            this.status = res.status;
-            console.log(this.status);
+            var status = res.status;
+            console.log(status);
+            console.log('tout va bien');
             console.log(res.body);
             this.NavigateToIntervention();
         }, (err) => {
-            this.status = err.status;
-            console.log(this.status);
+            var status = err.status;
+            console.log(status);
+            console.log('tout va mal');
             console.log("Vous avez fait des erreurs");
         });
   }
@@ -68,7 +70,8 @@ export class FormInterventionComponent {
       this.plannings = res.body['hydra:member'];
       console.log(this.plannings);
     }, (err) => {
-        console.log(err.status);  });
+        console.log(err.status);  
+    });
   }
 
   Getresulats(){
@@ -79,6 +82,13 @@ export class FormInterventionComponent {
     }, (err) => {
         console.log(err.status);  });
   }
- 
 
+  public AfficherErreur(){
+    let alert = this.alertCtrl.create({
+      title: 'Veuillez remplir tous les champs marqués *',
+      subTitle: 'Veuillez réessayer',
+      buttons: ['Fermer']
+    });
+    alert.present();
+  }
 }
