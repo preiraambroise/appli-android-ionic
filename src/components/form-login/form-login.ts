@@ -64,7 +64,7 @@ export class FormLoginComponent {
 
   public AfficherErreur(){
     let alert = this.alertCtrl.create({
-      title: 'Identifiant incorrect',
+      title: 'Identifiants incorrects',
       subTitle: 'Veuillez réessayer',
       buttons: ['Fermer']
     });

@@ -9,15 +9,15 @@ import { DataProvider } from '../../providers/data/data';
  */
 @Component({
   selector: 'listplanning',
-  templateUrl: 'listplanning.html'
+  templateUrl: 'listplanning.html',
 })
 export class ListplanningComponent {
-
+  PlanningId;
   datas: any[];
   constructor(dataProvider: DataProvider) {
       dataProvider.GetPlannings().subscribe((res => {
           this.datas = res.body['hydra:member'];
+          console.log(this.datas);
       }));
   }
-
 }

@@ -1,18 +1,32 @@
-<div>
-  <ion-list>
-    <ion-item>
-      <ion-label floating>Jeton d'Intervention</ion-label>
-      <ion-input [(ngModel)]="jeton" type="text" value=""></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Commentaire</ion-label>
-      <ion-input [(ngModel)]="commentaire" type="textarea"></ion-input>
-    </ion-item>
-    <listresultat></listresultat>
-    <listplanning></listplanning>
-    <div padding>
-      <button ion-button (click)="EnvoyerIntervention()">Envoyer</button>
-    </div>
-  </ion-list>
-</div>
+<ion-list>
+  <ion-item>
+     <ion-label floating>Jeton d'Intervention</ion-label>
+     <ion-input [(ngModel)]="jeton" type="text" value=""></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label floating>Commentaire</ion-label>
+    <ion-input [(ngModel)]="commentaire" type="textarea"></ion-input>
+  </ion-item>
+      <ion-list radio-group [(ngModel)]="Planningid">
+        <ion-list-header>
+          Planning
+        </ion-list-header>
+      
+        <ion-item *ngFor="let planning of plannings">
+          <ion-label>{{ planning.nom }}</ion-label>
+          <ion-radio value="{{ planning['@id'] }}"></ion-radio>
+        </ion-item>
+      </ion-list>
+      <ion-list radio-group [(ngModel)]="Resultatid">
+        <ion-list-header>
+          Resultat
+        </ion-list-header>
+        <ion-item *ngFor="let resultat of resultats">
+          <ion-label>{{ resultat.nom }}</ion-label>
+          <ion-radio value="{{ resultat['@id'] }}"></ion-radio>
+        </ion-item>
+      </ion-list>
+  <div padding>
+    <button ion-button (click)="EnvoyerIntervention()">Envoyer</button>
+  </div>
+</ion-list>

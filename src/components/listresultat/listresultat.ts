@@ -17,10 +17,11 @@ export class ListresultatComponent {
   status;
 
   constructor(dataProvider: DataProvider) {
-      dataProvider.GetResults().subscribe((res) => {
+      dataProvider.GetResults().subscribe( (res) => {
           this.status = res.status;
           console.log('dataprovider request status: '+res.status);
           this.datas = res.body['hydra:member'];
+          console.log(this.datas);
       }, (err) => {
             this.status = err.status;
             console.log('dataprovider request status: '+this.status);

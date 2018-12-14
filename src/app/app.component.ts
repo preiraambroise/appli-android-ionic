@@ -9,7 +9,7 @@ import { InterventionPage } from '../pages/intervention/intervention';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = InterventionPage;
+  rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
