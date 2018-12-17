@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController, AlertController } from 'ionic-angular';
+import { ViewController, NavController, AlertController, LoadingCmp, LoadingController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { InterventionPage } from '../../pages/intervention/intervention';
 
@@ -21,11 +21,20 @@ export class FormInterventionComponent {
   Planningid;
   plannings;
   resultats;
-
+  loading;
   dataProvider: DataProvider;
   nav: NavController;
-  constructor(public viewCtrl: ViewController, dataProvider: DataProvider, nav : NavController, private alertCtrl: AlertController) {
+  constructor(public viewCtrl: ViewController,
+              dataProvider: DataProvider,
+              nav : NavController, 
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController) {
       this.dataProvider = dataProvider;
+      this.loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: 'Chargement...'
+      });
+      this.loading.present();
       this.Getplannings();
       this.Getresulats();
       this.nav = nav;
@@ -49,15 +58,23 @@ export class FormInterventionComponent {
         }
     };
     console.log(intervention);
+    let loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: 'Chargement...'
+    });
+  
+    loading.present();
     this.dataProvider.EnvoyerIntervention(intervention)
         .subscribe((res) => {
             var status = res.status;
             console.log(status);
             console.log('tout va bien');
             console.log(res.body);
+            loading.dismiss();
             this.NavigateToIntervention();
         }, (err) => {
             var status = err.status;
+            loading.dismiss();
             console.log(status);
             console.log('tout va mal');
             console.log("Vous avez fait des erreurs");
@@ -77,6 +94,7 @@ export class FormInterventionComponent {
   Getresulats(){
     this.dataProvider.GetResults().subscribe( (res) => {
       console.log('dataprovider request status: '+res.status);
+      this.loading.dismiss();
       this.resultats = res.body['hydra:member'];
       console.log(this.resultats);
     }, (err) => {

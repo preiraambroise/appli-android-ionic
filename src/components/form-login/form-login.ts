@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 import { InterventionPage } from '../../pages/intervention/intervention';
 import { DataProvider } from '../../providers/data/data';
 import { AlertController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the FormLoginComponent component.
@@ -23,7 +24,12 @@ export class FormLoginComponent {
   haserror: boolean = false;
   errormessage: string = "Un message";
 
-  constructor(nav : NavController, dataProvider: DataProvider, private alertCtrl: AlertController ) {
+  constructor(nav : NavController,
+              dataProvider: DataProvider,
+              private alertCtrl: AlertController,
+              private storage: Storage,
+              private loadingCtrl: LoadingController
+              ) {
     this.dataProvider = dataProvider;
     this.nav = nav;
     this.alertC == alertCtrl;
@@ -35,10 +41,17 @@ export class FormLoginComponent {
         "password": this.password
       }
       var status;
+      let loading = this.loadingCtrl.create({
+        spinner: 'hide',
+        content: 'Chargement...'
+      });
+    
+      loading.present();
       this.dataProvider.login(credentials)
         .subscribe((res) => {
             console.log('status code: ' + res.status);
-            console.log(res);
+            this.dataProvider.SetToken(res.body["token"]);
+            console.log(res.body["token"]);
             status = res.status;
         }, (err) => {
             console.log('status code: ' + err.status);
@@ -48,11 +61,13 @@ export class FormLoginComponent {
           if (status == 200)
           {
               console.log(status);
+              loading.dismiss();
               this.NavigateToIntervention();
           }
           if (status == 401)
           {
               console.log(status);
+              loading.dismiss();
               this.AfficherErreur();
           } 
       });

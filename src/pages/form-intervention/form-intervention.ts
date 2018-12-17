@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 
 /**
  * Generated class for the FormInterventionPage page.
@@ -14,11 +14,10 @@ import { NavController } from 'ionic-angular';
 })
 export class FormInterventionPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public viewCtrl: ViewController) {
   }
 
-  EnvoyerIntervention()
-  {
-      
+  dismiss() {
+    this.viewCtrl.dismiss();
   }
 }

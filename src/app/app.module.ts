@@ -13,8 +13,7 @@ import { FormInterventionComponent } from '../components/form-intervention/form-
 import { DataProvider } from '../providers/data/data';
 import { HttpClientModule } from '@angular/common/http';
 import { FormInterventionPage } from '../pages/form-intervention/form-intervention';
-import { ListresultatComponent } from '../components/listresultat/listresultat';
-import { ListplanningComponent } from '../components/listplanning/listplanning';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -25,13 +24,12 @@ import { ListplanningComponent } from '../components/listplanning/listplanning';
     InterventionPage,
     FormInterventionPage,
     FormInterventionComponent,
-    ListresultatComponent,
-    ListplanningComponent,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,9 +37,7 @@ import { ListplanningComponent } from '../components/listplanning/listplanning';
     TabsPage,
     InterventionPage,
     FormInterventionComponent,
-    ListresultatComponent,
     FormInterventionPage,
-    ListplanningComponent
   ],
   providers: [
     StatusBar,
